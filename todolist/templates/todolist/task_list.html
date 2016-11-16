@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>TODO</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="">TO-DO list</a></h1>
+        </div>
+        {% for task in tasks %}
+        <div>
+            <p>created: {{ task.created_date }}</p>
+            <h2><a href="">{{ task.title }}</a></h2>
+            <p>{{ task.text|linebreaksbr }}</p>
+        </div>
+        {% endfor %}
+    </body>
+</html>
