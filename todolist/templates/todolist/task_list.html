@@ -1,52 +1,42 @@
-{% load staticfiles %}
+{% extends 'todolist/base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-xs-6">
+    <a href="#" class="list-group-item-info">Pending</a>
+    {% for task in tasks %}
+    {% if task.done_date is null %}
+    <ul class="task">
+      <li class="list-group-item">
+        {% if task.modified_date is null %}
+        <a class="date">added: {{ task.created_date }}</a>
+        {% else %}
+        <a class="date">modified: {{ task.modified_date }}</a>
+        {% endif %}
+        <h2 class="task-title">{{ task.title }}</h2>
+        <a href="" class="accept"><span class="glyphicon glyphicon-ok-sign"></span></a>
+        <a href="" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
+        <p>{{ task.text|linebreaksbr }}</p>
+      </li>
+    </ul>
+    {% endif %}
+    {% endfor %}
+  </div>
+  <div class="col-xs-6">
 
-
-<link href="https://fonts.googleapis.com/css?family=Ranga" rel="stylesheet">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<link rel="stylesheet" href="{% static 'css/todolist.css' %}">
-
-
-<html>
-    <head>
-        <title>TODO</title>
-    </head>
-    <body>
-      <!--div id="wrapper"-->
-
-      <div class="jumbotron">
-          <div class="page-header">
-            <h1>todo list</h1>
-            <h2>keep things organized!<h2>
-          </div>
-            <div class="row">
-              <div class="col-xs-6">
-                {% for task in tasks %}
-                <ul class="task">
-                  <li class="list-group-item">
-                    <a class="date">{{ task.created_date }}</a>
-                    <h2 class="task-title">{{ task.title }}</h2>
-                    <a href="" class="accept"><span class="glyphicon glyphicon-check"></span></a>
-                    <a href="" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
-                    <p>{{ task.text|linebreaksbr }}</p>
-                  </li>
-                </ul>
-                {% endfor %}
-              </div>
-              <div class="col-xs-6">
-                {% for task in tasks %}
-                <ul class="task">
-                  <li class="list-group-item">
-                    <div class="date">
-                      {{ task.created_date }}
-                    </div>
-                    <h2><a href="">{{ task.title }}</a></h2>
-                    <a class="accept"><span class="glyphicon glyphicon-pushpin"></span></a>
-                    <p>{{ task.text|linebreaksbr }}</p>
-                  </li>
-                </ul>
-                {% endfor %}
-              </div>
-            </div>
-      <!--/div-->
-    </body>
+    {% for task in tasks %}
+    {% if task.done_date is not null %}
+    <ul class="task">
+          <a href="#" class="list-group-item-success">Completed</a>
+      <li class="list-group-item">
+        <a class="date">done: {{ task.done_date }}</a>
+        <h2 class="task-title">{{ task.title }}</h2>
+        <a href="" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
+        <a href="" class="repeat"><span class="glyphicon glyphicon-minus-sign"></span></a>
+        <p>{{ task.text|linebreaksbr }}</p>
+      </li>
+    </ul>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}

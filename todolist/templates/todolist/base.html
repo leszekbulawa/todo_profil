@@ -1,0 +1,25 @@
+{% load staticfiles %}
+
+
+<link href="https://fonts.googleapis.com/css?family=Ranga" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="{% static 'css/todolist.css' %}">
+
+
+<html>
+    <head>
+        <title>TODO</title>
+    </head>
+    <body>
+      <!--div id="wrapper"-->
+
+      <div class="jumbotron">
+          <div class="page-header">
+            <h1>todo list</h1>
+            <h2>keep things organized!<h2>
+          </div>
+          {% block content %}
+          {% endblock %}
+      <!--/div-->
+    </body>
