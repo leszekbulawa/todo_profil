@@ -1,8 +1,8 @@
 {% extends 'todolist/base.html' %}
 {% block content %}
+<a href="{% url 'task_new' %}" class="add-item"><span class="glyphicon glyphicon-plus"></span></a>
 <div class="row">
   <div class="col-xs-6">
-    <a href="#" class="list-group-item-info">Pending</a>
     {% for task in tasks %}
     {% if task.done_date is null %}
     <ul class="task">
@@ -12,9 +12,9 @@
         {% else %}
         <a class="date">modified: {{ task.modified_date }}</a>
         {% endif %}
-        <h2 class="task-title">{{ task.title }}</h2>
-        <a href="" class="accept"><span class="glyphicon glyphicon-ok-sign"></span></a>
-        <a href="" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
+        <h2 class="task-title"><a href="{% url 'task_detail' pk=task.pk %}">{{ task.title }}</a></h2>
+        <a href="{% url 'task_accept' pk=task.pk %}" class="accept"><span class="glyphicon glyphicon-ok-sign"></span></a>
+        <a href="{% url 'task_edit' pk=task.pk %}" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
         <p>{{ task.text|linebreaksbr }}</p>
       </li>
     </ul>
@@ -26,12 +26,10 @@
     {% for task in tasks %}
     {% if task.done_date is not null %}
     <ul class="task">
-          <a href="#" class="list-group-item-success">Completed</a>
       <li class="list-group-item">
         <a class="date">done: {{ task.done_date }}</a>
         <h2 class="task-title">{{ task.title }}</h2>
-        <a href="" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
-        <a href="" class="repeat"><span class="glyphicon glyphicon-minus-sign"></span></a>
+        <a href="{% url 'task_remove' pk=task.pk %}" class="remove"><span class="glyphicon glyphicon-trash"></span></a>
         <p>{{ task.text|linebreaksbr }}</p>
       </li>
     </ul>

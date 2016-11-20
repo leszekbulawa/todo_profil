@@ -10,6 +10,10 @@ h1, h2, h3, h4 {
 .page-header{
   text-align: center;
 }
+.add-item{
+  text-align: center;
+	font-size: 400%;
+}
 .date {
   float: right;
   color: #828282;
@@ -32,18 +36,6 @@ h1, h2, h3, h4 {
   float: right;
   font-size: 170%;
   color: #999966
-}
-
-.repeat {
-  float: right;
-  font-size: 170%;
-  color: #cc0000;
-}
-}
-#wrapper{
-	display: table-row;
-	vertical-align: middle;
-	text-align: center;
 }
 .list-group-item {
   width: 500px;

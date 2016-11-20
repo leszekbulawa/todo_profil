@@ -1,0 +1,23 @@
+{% extends 'todolist/base.html' %}
+
+{% block content %}
+	<div class="task">
+		{% if task.created_date %}
+			<div class="date">
+				{{ task.created_date }}
+			</div>
+    {% elif task.modified_date %}
+			<div class="date">
+				{{ task.created_date }}
+			</div>
+    {% elif task.done_date %}
+			<div class="date">
+				{{ task.done_date }}
+			</div>
+		{% endif %}
+    <a href="{% url 'task_accept' pk=task.pk %}" class="accept"><span class="glyphicon glyphicon-ok-sign"></span></a>
+    <a href="{% url 'task_edit' pk=task.pk %}" class="edit"><span class="glyphicon glyphicon-edit"></span></a>
+		<h1>{{ task.title }}</h1>
+		<p>{{ task.text|linebreaksbr }}</p>
+	</div>
+{% endblock %}
