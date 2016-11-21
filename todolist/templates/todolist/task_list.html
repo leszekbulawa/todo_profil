@@ -3,6 +3,7 @@
 <a href="{% url 'task_new' %}" class="add-item"><span class="glyphicon glyphicon-plus"></span></a>
 <div class="row">
   <div class="col-xs-6">
+    <h2 class="descr">In progress:</h2>
     {% for task in tasks %}
     {% if task.done_date is null %}
     <ul class="task">
@@ -22,7 +23,7 @@
     {% endfor %}
   </div>
   <div class="col-xs-6">
-
+    <h2 class="descr">Completed:</h2>
     {% for task in tasks %}
     {% if task.done_date is not null %}
     <ul class="task">
